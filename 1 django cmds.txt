@@ -1,0 +1,60 @@
+
+django-admin startproject mysite
+
+cd mysite
+
+
+python3 -m venv venv
+
+source venv/bin/activate
+
+pip install -r requirements.txt
+
+
+### django ###
+
+python manage.py runserver OR ./manage.py runserver
+
+python manage.py migrate
+
+python manage.py startapp polls
+python manage.py makemigrations polls
+
+
+python manage.py migrate --fake-initial
+
+
+# optional: ver migration code
+python manage.py sqlmigrate polls 0001
+
+## ADMIN
+python manage.py createsuperuser
+
+## TESTS
+python manage.py test polls
+
+python manage.py collectstatic
+
+
+##### DOCKER
+# criar machine
+docker-machine create -d virtualbox dev;
+
+# point Docker at the dev machine
+eval "$(docker-machine env dev)"
+
+# config settings
+
+docker-compose build
+docker-compose up -d
+
+# migrate
+docker-compose run web /usr/local/bin/python manage.py migrate
+
+# get ip, dev is machine name
+docker-machine ip dev
+
+docker-compose stop
+
+
+
